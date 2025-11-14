@@ -1,0 +1,340 @@
+@import url("https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700&display=swap");
+
+body {
+  font-family: "Alexandria", sans-serif;
+  background-color: #0a0a0a;
+  color: white;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* --- OVERLAY DE DESFOQUE GLOBAL --- */
+.global-blur-overlay {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: none;
+  background: transparent;
+  opacity: 0;
+  pointer-events: none;
+  transition: backdrop-filter 0.5s ease, background 0.5s ease, opacity 0.5s ease;
+  z-index: 9999;
+}
+.global-blur-overlay.active {
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 1;
+}
+
+/* --- SEÇÃO DE DESENVOLVEDOR --- */
+.developer-container {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  position: absolute;
+  top: 40%;
+  left: 13%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 10000;
+}
+
+.developer-container > div {
+  position: relative;
+  width: 100%;
+}
+
+/* Estados iniciais para animação controlada por GSAP */
+.developer-title,
+.dev-info-text,
+.dev-info2-text,
+.dev-info3-text,
+.centered-image-container,
+.banner-container {
+  opacity: 0;
+}
+
+.developer-title {
+  margin-top: -200px; /* sobe o texto */
+  top: 50%;
+  font-size: 13rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+  user-select: none;
+  color: white;
+  cursor: pointer;
+  max-width: 65%;
+  padding-right: 0.5rem;
+  overflow: visible;
+  line-height: 1;
+  display: inline-block;
+  transform-origin: center center;
+  transition: text-shadow 0.4s ease, transform 0.3s ease;
+}
+.developer-title:hover {
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+  transform: scale(1.03);
+}
+
+/* --- TEXTOS LATERAIS --- */
+.dev-info-text,
+.dev-info2-text,
+.dev-info3-text {
+  transition: filter 0.4s ease, opacity 0.5s ease, transform 0.5s ease;
+  white-space: pre-wrap;
+  will-change: transform, opacity;
+}
+
+/* Texto esquerdo */
+.dev-info-text {
+  position: absolute;
+  top: var(--dev-info-top, 37%);
+  right: var(--dev-info-right, 71.4%);
+  max-width: 28%;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: white;
+  text-align: left;
+  z-index: 10001;
+  user-select: none;
+  transform-origin: left center;
+}
+.dev-info-text:hover {
+  text-shadow: none;
+}
+
+/* Texto direito */
+.dev-info2-text {
+  position: absolute;
+  top: var(--dev-info-top, 37%);
+  right: var(--dev-info-right, 29.6%);
+  max-width: 28%;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: white;
+  text-align: right;
+  user-select: none;
+  z-index: 10001;
+  transform-origin: right center;
+}
+.dev-info2-text:hover {
+  text-shadow: none;
+}
+
+/* Texto superior */
+.dev-info3-text {
+  position: absolute;
+  top: var(--dev-info-top, -160%);
+  right: var(--dev-info-right, 35.0%);
+  font-weight: 700;
+  max-width: 90%;
+  font-size: 3rem;
+  color: white;
+  text-align: left;
+}
+.dev-info3-text.blurred {
+  filter: blur(8px);
+  opacity: 0.4;
+}
+
+/* --- IMAGEM CENTRAL COM EFEITO PARALLAX --- */
+.centered-image-container {
+  position: fixed;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 12000;
+  opacity: 0;
+  transform-origin: center;
+  transition: filter 0.5s ease;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+.centered-image-container.active-blur {
+  filter: blur(8px);
+  opacity: 0.6;
+}
+.centered-image {
+  max-width: 2900px;
+  max-height: 2900px;
+  object-fit: contain;
+  user-select: none;
+  transform: scale(1);
+  transition: transform 1s ease;
+  pointer-events: none;
+}
+
+/* --- BANNER INFERIOR --- */
+.banner-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1500;
+  height: 140px;
+  pointer-events: none;
+  opacity: 0;
+}
+.transparent-banner {
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+}
+.banner {
+  display: inline-flex;
+  white-space: nowrap;
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 700;
+  gap: 4rem;
+  will-change: transform;
+  text-transform: uppercase;
+  opacity: 0.9;
+  letter-spacing: 3px;
+}
+.banner span {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* --- ANIMAÇÕES GSAP PERSONALIZADAS --- */
+.gsap-animated {
+  will-change: transform, opacity, filter;
+}
+
+.initial-hidden {
+  opacity: 0;
+}
+
+.initial-blurred {
+  filter: blur(10px);
+}
+
+.initial-scaled-down {
+  transform: scale(0.8);
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 1200px) {
+  .developer-title {
+    font-size: 10rem;
+  }
+  
+  .dev-info-text,
+  .dev-info2-text {
+    max-width: 35%;
+    font-size: 0.9rem;
+  }
+  
+  .banner {
+    font-size: 2.5rem;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .developer-container {
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 10px;
+  }
+  
+  .developer-title {
+    font-size: 5rem;
+    padding-right: 0;
+    max-width: 100%;
+  }
+  
+  .dev-info-text,
+  .dev-info2-text {
+    position: relative;
+    max-width: 90%;
+    font-size: 0.9rem;
+    top: auto;
+    right: auto;
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  .dev-info3-text {
+    position: relative;
+    top: auto;
+    right: auto;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 20px auto;
+  }
+  
+  .banner {
+    font-size: 1.8rem;
+    gap: 1.5rem;
+  }
+  
+  .centered-image-container {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .centered-image {
+    max-width: 800px;
+    max-height: 800px;
+  }
+}
+
+@media (max-width: 480px) {
+  .developer-title {
+    font-size: 3.5rem;
+  }
+  
+  .dev-info-text,
+  .dev-info2-text {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  
+  .dev-info3-text {
+    font-size: 1.2rem;
+  }
+  
+  .banner {
+    font-size: 1.4rem;
+    gap: 1rem;
+    letter-spacing: 1px;
+  }
+  
+  .centered-image {
+    max-width: 500px;
+    max-height: 500px;
+  }
+}
+
+/* --- ANIMAÇÕES DE PERFORMANCE --- */
+.optimized-animation {
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform: translate3d(0, 0, 0);
+}
+
+.no-flicker {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Suporte para reduzir movimento (acessibilidade) */
+@media (prefers-reduced-motion: reduce) {
+  .developer-title,
+  .dev-info-text,
+  .dev-info2-text,
+  .dev-info3-text,
+  .centered-image-container,
+  .banner-container {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

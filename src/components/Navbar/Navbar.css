@@ -1,0 +1,132 @@
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 55px 140px;
+  background-color: rgba(0, 0, 0, 0); /* Preto transparente */
+  backdrop-filter: saturate(180%) blur(20px); /* efeito de desfoco */
+  -webkit-backdrop-filter: saturate(10%) blur(20px);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: 'Alexandria', sans-serif;
+  box-sizing: border-box;
+}
+
+.top-left-fjr {
+  position: fixed;
+  top: 50px;
+  left: 80px;
+  font-size: 2.0rem;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 700;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  z-index: 1100;
+}
+
+.fjr-letters {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.dot {
+  margin-left: 2px;
+}
+
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 55px 140px;
+  background: transparent;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 1000;
+  font-family: "Alexandria", sans-serif;
+  box-sizing: border-box;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 170px;
+  align-items: flex-start;
+  margin-left: 240px;
+}
+
+.navbar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
+  user-select: none;
+  color: white;
+}
+
+.navbar-main-text {
+  font-size: 1.0rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transform-origin: center bottom;
+}
+
+.navbar-sub-text {
+  font-size: 0.85rem;
+  margin-top: 6px;
+  color: #ccc;
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+.navbar-cv {
+  position: fixed;
+  right: 80px;
+  top: 55px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  min-width: 70px; /* Define largura fixa para o botão não diminuir */
+}
+
+.btn-cv {
+  background-color: white;
+  color: black;
+  border: 2px solid white;
+  padding: 8px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 0;
+  transition: box-shadow 0.3s ease;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 70px; /* Mesma largura da div pai */
+}
+
+.btn-cv:hover {
+  box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* Animação leve de piscar para o ícone */
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.6));
+  }
+}
+
+.glow-animation {
+  animation: glowPulse 1.5s infinite;
+}

@@ -1,0 +1,33 @@
+.intro-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: background-color 2s ease-in-out;
+  z-index: 9999;
+}
+
+.intro-text {
+  font-family: "Inter", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #000000;
+  transition: all 1.6s ease-in-out;
+  z-index: 2;
+  user-select: none;
+}
+
+/* Efeito de fusão suave branco → preto */
+.fade-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, #000000 10%, #000000 100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}

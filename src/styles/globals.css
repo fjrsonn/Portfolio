@@ -1,0 +1,44 @@
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: black;
+  color: white;
+}
+
+/* layout base */
+.app-root {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: transparent; /* BackgroundSection cuida do visual */
+}
+
+/* BackgroundSection (seu CyberMatrixHero) deve usar position: fixed; inset: 0; z-index: 1; */
+/* Navbar por cima */
+.app-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60; /* maior que seções e imagens */
+}
+
+/* As seções ficam acima do background, mas abaixo da navbar */
+.page-section {
+  position: relative;
+  z-index: 20; /* acima do background, abaixo da navbar */
+  width: 100%;
+}
+
+/* garante que hero e dev tenham 100vh cada (ajuste conforme quiser) */
+.hero-section {
+  min-height: 100vh;
+  display: block;
+}
+
+.dev-section {
+  min-height: 100vh; /* sua Developer visual ocupa 100vh; conteúdo fixo (imagem/banner) pode ultrapassar visualmente */
+  display: block;
+  position: relative;
+}
